@@ -1,6 +1,6 @@
 # Fly.io free-tier friendly deploy (see wishlist-readme.md)
-app = "wishlist-hello"
-primary_region = "sjc"
+app = "wishlist-zsgabw"
+primary_region = "sin"
 
 [build]
 
