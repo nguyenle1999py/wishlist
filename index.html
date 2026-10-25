@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff8fb8" />
+  <meta name="description" content="WishList — a cute birthday wishlist for gifts, trips, and dreams." />
+  <title>WishList ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='48'%3E%E2%99%A1%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="bg-atmosphere" aria-hidden="true"></div>
+  <div class="bg-dots" aria-hidden="true"></div>
+
+  <header class="hero">
+    <div class="hero-bow" aria-hidden="true">
+      <svg viewBox="0 0 120 70" class="bow-svg" role="img">
+        <ellipse cx="28" cy="36" rx="26" ry="22" fill="#ff6b9d" />
+        <ellipse cx="92" cy="36" rx="26" ry="22" fill="#ff6b9d" />
+        <ellipse cx="28" cy="36" rx="14" ry="12" fill="#ffc0d9" />
+        <ellipse cx="92" cy="36" rx="14" ry="12" fill="#ffc0d9" />
+        <ellipse cx="60" cy="36" rx="14" ry="16" fill="#ff4d88" />
+        <ellipse cx="60" cy="36" rx="7" ry="8" fill="#fff0f6" />
+        <path d="M54 48 Q60 62 66 48" fill="#ff4d88" />
+        <path d="M52 50 Q48 68 58 66" fill="#ff6b9d" opacity=".85" />
+        <path d="M68 50 Q72 68 62 66" fill="#ff6b9d" opacity=".85" />
+      </svg>
+    </div>
+    <p class="hero-kicker">birthday dreams</p>
+    <h1 class="brand">WishList</h1>
+    <p class="hero-tagline">Gifts, trips &amp; little joys — all in one soft pink list.</p>
+    <div class="hero-actions">
+      <button type="button" class="btn btn-primary" id="btn-add-hero" aria-label="Add a wish">
+        <span class="btn-heart" aria-hidden="true">♡</span> Add a wish
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="list-section" aria-labelledby="list-heading">
+      <div class="list-header">
+        <h2 id="list-heading" class="list-title">My wishes</h2>
+        <p class="list-count" id="wish-count" aria-live="polite"></p>
+      </div>
+
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-bow" aria-hidden="true">🎀</div>
+        <p class="empty-title">Your list is empty</p>
+        <p class="empty-copy">Tap the button and add your first birthday wish.</p>
+        <button type="button" class="btn btn-secondary" id="btn-add-empty">Add first wish</button>
+      </div>
+
+      <p id="load-error" class="load-error" hidden></p>
+      <ul id="wish-list" class="wish-list" aria-label="Birthday wishes"></ul>
+    </section>
+  </main>
+
+  <button type="button" class="fab" id="fab-add" aria-label="Add a wish" title="Add a wish">
+    <span aria-hidden="true">+</span>
+  </button>
+
+  <dialog id="wish-dialog" class="wish-dialog" aria-labelledby="dialog-title">
+    <form method="dialog" id="wish-form" class="wish-form" novalidate>
+      <header class="dialog-header">
+        <h2 id="dialog-title" class="dialog-title">New wish</h2>
+        <button type="button" class="icon-btn" id="btn-close-dialog" aria-label="Close">×</button>
+      </header>
+
+      <label class="field">
+        <span class="field-label">Title <abbr title="required">*</abbr></span>
+        <input type="text" id="field-title" name="title" required maxlength="120" placeholder="e.g. Soft pink tote bag" autocomplete="off" />
+      </label>
+
+      <label class="field">
+        <span class="field-label">Link <span class="optional">(optional)</span></span>
+        <input type="url" id="field-link" name="link" maxlength="2000" placeholder="https://…" inputmode="url" />
+      </label>
+
+      <label class="field">
+        <span class="field-label">Note <span class="optional">(optional)</span></span>
+        <textarea id="field-note" name="note" rows="3" maxlength="500" placeholder="Size, color, why you want it…"></textarea>
+      </label>
+
+      <div class="field">
+        <span class="field-label">Image <span class="optional">(optional)</span></span>
+        <div class="image-picker">
+          <input type="file" id="field-image" accept="image/*" class="sr-only" />
+          <button type="button" class="btn btn-ghost" id="btn-pick-image">Choose photo</button>
+          <button type="button" class="btn btn-ghost danger" id="btn-clear-image" hidden>Remove</button>
+        </div>
+        <div id="image-preview" class="image-preview" hidden>
+          <img id="image-preview-img" alt="Wish preview" />
+        </div>
+        <p class="field-hint" id="image-hint">Photos upload to the server (max ~2&nbsp;MB).</p>
+      </div>
+
+      <footer class="dialog-footer">
+        <button type="button" class="btn btn-ghost" id="btn-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="btn-save">Save wish</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Fly.io free-tier friendly deploy (see wishlist-readme.md)
+app = "wishlist-hello"
+primary_region = "sjc"
+
+[build]
+
+[env]
+  NODE_ENV = "production"
+  PORT = "8765"
+  DATABASE_PATH = "/data/wishlist.db"
+  UPLOAD_DIR = "/data/uploads"
+  DATA_DIR = "/data"
+
+[http_service]
+  internal_port = 8765
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[mounts]]
+  source = "wishlist_data"
+  destination = "/data"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

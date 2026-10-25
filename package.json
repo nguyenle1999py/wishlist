@@ -1,0 +1,24 @@
+{
+  "name": "wishlist",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "WishList — cute birthday wishlist (Vite + Hono + SQLite)",
+  "scripts": {
+    "dev": "node server/index.js",
+    "start": "NODE_ENV=production node server/index.js",
+    "build": "vite build",
+    "db:migrate": "node server/migrate.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.8",
+    "hono": "^4.7.2",
+    "nanoid": "^5.1.0"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}
